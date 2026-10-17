@@ -1,0 +1,14 @@
+{
+  "name": "listingloom",
+  "version": "1.0.0",
+  "description": "Marketplace listing writer that runs on open-weight models.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "express": "^4.19.2" },
+  "license": "MIT"
+}

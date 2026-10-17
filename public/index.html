@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ListingLoom: write your Etsy and eBay listings privately</title>
+<meta name="description" content="Describe what you made and get a title, description, tags and a price after fees. Runs on an open-weight model you control.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2312332b'/><circle cx='32' cy='18' r='5' fill='%23f2b81c'/><path d='M20 30h24l-4 22H24z' fill='%23f2b81c'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top">ListingLoom</a>
+    <nav>
+      <a href="#how">How it runs</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn small" href="#tool">Write a listing</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="wrap intro">
+  <h1>Your listing is written before the glue dries.</h1>
+  <p>Tell ListingLoom what you made. It writes the title, description and tags for Etsy or eBay, then works out a price that still leaves you a profit after fees. The writing is done by an open-weight model on a server you control, so your costs and supplier notes stay yours.</p>
+</section>
+
+<section class="wrap tool" id="tool">
+  <form id="form" class="panel" autocomplete="off">
+    <div class="field"><label for="product">What did you make?</label>
+      <input id="product" name="product" value="Hand-poured soy candle" maxlength="80" required></div>
+    <div class="two">
+      <div class="field"><label for="materials">Materials</label>
+        <input id="materials" name="materials" value="soy wax, cedar wood wick" maxlength="160"></div>
+      <div class="field"><label for="style">Scent or style</label>
+        <input id="style" name="style" value="Smoked cedar and amber" maxlength="80"></div>
+    </div>
+    <div class="two">
+      <div class="field"><label for="marketplace">Where will you sell it?</label>
+        <select id="marketplace" name="marketplace"><option>Etsy</option><option>eBay</option></select></div>
+      <div class="field"><label for="cost">What it costs you to make ($)</label>
+        <input id="cost" name="cost" type="number" min="0" step="0.01" value="6"></div>
+    </div>
+    <fieldset class="field">
+      <legend>Voice</legend>
+      <div class="seg" id="voice">
+        <label><input type="radio" name="voice" value="Warm" checked><span>Warm</span></label>
+        <label><input type="radio" name="voice" value="Polished"><span>Polished</span></label>
+        <label><input type="radio" name="voice" value="Playful"><span>Playful</span></label>
+        <label><input type="radio" name="voice" value="Straightforward"><span>Straightforward</span></label>
+      </div>
+    </fieldset>
+    <div class="field"><label for="details">Anything else buyers should know</label>
+      <textarea id="details" name="details" rows="3" maxlength="400">40-hour burn time, reusable amber jar, small batch</textarea></div>
+    <button class="btn" id="go" type="submit">Write my listing</button>
+  </form>
+
+  <div class="result" aria-live="polite">
+    <div class="tag" id="tag">
+      <div class="hole"></div>
+      <div id="tagBody" class="tagbody">
+        <p class="hint">Fill in the form and your listing will show up on this tag.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap how" id="how">
+  <h2>How it runs</h2>
+  <dl>
+    <div><dt>An open-weight model does the writing</dt>
+      <dd>The server sends your notes to a model such as Gemma through a standard chat endpoint. Run it yourself with Ollama, or point it at any provider that hosts open models. Switching models is a change to two settings.</dd></div>
+    <div><dt>Your numbers stay on your server</dt>
+      <dd>Cost of goods, supplier names and unreleased designs are never sent to a closed AI company. Prices are calculated on the server from the fees for the marketplace you pick.</dd></div>
+    <div><dt>No per-listing bill</dt>
+      <dd>With your own model there is no token meter running. Writing the thousandth listing costs the same as the first, which is what makes a nine dollar plan workable.</dd></div>
+  </dl>
+</section>
+
+<section class="wrap pricing" id="pricing">
+  <div class="phead">
+    <h2>Pricing</h2>
+    <div class="billing" role="group" aria-label="Billing period">
+      <button type="button" class="on" data-period="m">Monthly</button>
+      <button type="button" data-period="y">Yearly, 2 months free</button>
+    </div>
+  </div>
+  <div class="plans">
+    <article class="plan">
+      <h3>Free</h3>
+      <p class="for">For makers who like to run their own tools.</p>
+      <p class="amt"><b>$0</b></p>
+      <ul>
+        <li>Self-host with your own model</li>
+        <li>Unlimited listings</li>
+        <li>Etsy and eBay formats</li>
+        <li>Fee-aware price suggestions</li>
+      </ul>
+      <button class="btn ghost" data-plan="Free">Join the waitlist</button>
+    </article>
+    <article class="plan feature">
+      <h3>Seller</h3>
+      <p class="for">For shops that add new items every week.</p>
+      <p class="amt"><b>$<span data-m="9" data-y="90">9</span></b><span class="per" data-m="a month" data-y="a year">a month</span></p>
+      <ul>
+        <li>Hosted for you, nothing to install</li>
+        <li>Saved voice presets for each shop</li>
+        <li>History of every listing you wrote</li>
+        <li>Copy fields straight into Etsy or eBay</li>
+      </ul>
+      <button class="btn solid" data-plan="Seller">Join the waitlist</button>
+    </article>
+    <article class="plan">
+      <h3>Studio</h3>
+      <p class="for">For small businesses with a full catalogue.</p>
+      <p class="amt"><b>$<span data-m="29" data-y="290">29</span></b><span class="per" data-m="a month" data-y="a year">a month</span></p>
+      <ul>
+        <li>Upload a CSV, get 500 listings back</li>
+        <li>Model tuned on your best sellers</li>
+        <li>Three team seats</li>
+        <li>Email support</li>
+      </ul>
+      <button class="btn ghost" data-plan="Studio">Join the waitlist</button>
+    </article>
+  </div>
+
+  <form id="wait" class="wait">
+    <div>
+      <h3>Get early access</h3>
+      <p>Paid plans open in stages. Leave your email and pick a plan; you will hear from me when your spot is ready.</p>
+    </div>
+    <div class="waitfields">
+      <label class="sr" for="wemail">Email</label>
+      <input id="wemail" type="email" placeholder="you@yourshop.com" required maxlength="120">
+      <label class="sr" for="wplan">Plan</label>
+      <select id="wplan"><option>Free</option><option selected>Seller</option><option>Studio</option></select>
+      <button class="btn" type="submit">Save my spot</button>
+    </div>
+    <p id="wmsg" class="wmsg" role="status"></p>
+  </form>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">ListingLoom &copy; <span id="yr"></span></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<script src="/app.js"></script>
+</body>
+</html>
